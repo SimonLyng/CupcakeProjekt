@@ -9,6 +9,7 @@ public class User
     private String Email;
     private String password;
     private String Role;
+    private int balance;
 
 
 
