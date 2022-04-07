@@ -1,5 +1,11 @@
 package dat.startcode.control;
 
+import dat.startcode.model.config.ApplicationStart;
+import dat.startcode.model.entities.User;
+import dat.startcode.model.exceptions.DatabaseException;
+import dat.startcode.model.persistence.ConnectionPool;
+import dat.startcode.model.persistence.UserMapper;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -14,44 +20,29 @@ import java.util.logging.Logger;
 
 @WebServlet(name = "Servlet_CreateAccount", value = "/Servlet_CreateAccount")
 public class Servlet_CreateAccount extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+    private ConnectionPool connectionPool;
 
+    @Override
+    public void init() throws ServletException {
+        this.connectionPool = ApplicationStart.getConnectionPool();
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
+            ServletException, IOException {
         String FirstName = request.getParameter("FirstName");
         String LastName = request.getParameter("LastName");
         String email = request.getParameter("email");
-        String pass = request.getParameter("pass");
+        String password = request.getParameter("password");
 
+        UserMapper userMapper = new UserMapper(connectionPool);
+        String role = "User";
         try {
-
-            // loading drivers for mysql
-            Class.forName("com.mysql.jdbc.Driver");
-
-            //creating connection with the database
-            Connection con = DriverManager.getConnection
-                    ("jdbc:mysql:/ /localhost:3306/test", "username", "password");
-
-            PreparedStatement ps = con.prepareStatement
-                    ("insert into profiles values(?,?,?,?)");
-
-            ps.setString(1, FirstName);
-            ps.setString(2, LastName);
-            ps.setString(3, email);
-            ps.setString(4, pass);
-            int i = ps.executeUpdate();
-
-            if (i > 0) {
-                out.println("You are sucessfully registered");
-            }
-
-        } catch (Exception se) {
-            Logger.getLogger("web").log(Level.SEVERE, se.getMessage());
-            request.setAttribute("errormessage", se.getMessage());
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+            userMapper.createUser(FirstName, LastName, email, password, role);
+        } catch (DatabaseException e) {
+            e.printStackTrace();
         }
 
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 }
-

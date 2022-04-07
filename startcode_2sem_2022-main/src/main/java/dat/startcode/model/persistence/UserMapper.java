@@ -49,18 +49,20 @@ public class UserMapper implements IUserMapper
     }
 
     @Override
-    public User createUser(String Email, String password, String role) throws DatabaseException
+    public User createUser(String FirstName, String LastName,String Email, String password, String role) throws DatabaseException
     {
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
-        String sql = "insert into user (Email, password, role) values (?,?,?)";
+        String sql = "insert into user (FirstName, LastName, Email, password, role) values (?,?,?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
-                ps.setString(1, Email);
-                ps.setString(2, password);
-                ps.setString(3, role);
+                ps.setString(1, FirstName);
+                ps.setString(2, LastName);
+                ps.setString(3, Email);
+                ps.setString(4, password);
+                ps.setString(5, role);
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
                 {

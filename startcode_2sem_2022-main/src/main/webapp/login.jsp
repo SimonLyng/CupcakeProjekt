@@ -4,26 +4,92 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page errorPage="error.jsp" isErrorPage="false" %>
 
-<t:pagetemplate>
-    <jsp:attribute name="header">
-             Login
-    </jsp:attribute>
+<html>
+<head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    <jsp:attribute name="footer">
-            Login
-    </jsp:attribute>
+        body {
+            margin: 0;
+            font-family: Serif, Helvetica, sans-serif;
+        }
 
-    <jsp:body>
+        .header {
+            overflow: hidden;
+            background-color: #f1f1f1;
+            padding: 20px 10px;
+        }
 
-        <h3>You can log in here</h3>
+        .header a {
+            float: left;
+            color: black;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 25px;
+            border-radius: 4px;
+        }
 
-        <form action="login" method="post">
-            <label for="Email">Email: </label>
-            <input type="text" id="Email" name="Email"/>
-            <label for="password">Password: </label>
-            <input type="password" id="password" name="password"/>
-            <input type="submit"  value="Log in"/>
-        </form>
+        .header a.logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
 
-    </jsp:body>
-</t:pagetemplate>
+        .header a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .header a.active {
+            background-color: dodgerblue;
+            color: white;
+        }
+
+        .header-right {
+            float: right;
+        }
+
+        @media screen and (max-width: 500px) {
+            .header a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+
+            .header-right {
+                float: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="header">
+    <a href="index.jsp" class="logo">Olsker Cupcakes</a>
+    <div class="header-right">
+        <a class="active" href="index.jsp">Hjem</a>
+        <a href="login.jsp">Log ind</a>
+        <a href="Logout">Log ud</a>
+        <a href="UserSide.jsp">Min Konto</a>
+        <a href="CreateAccount.jsp">Ny konto</a>
+    </div>
+</div>
+<h3>You can log in here</h3>
+
+<form action="login" method="post">
+    <label for="Email">Email: </label>
+    <input type="text" id="Email" name="Email"/>
+    <label for="password">Password: </label>
+    <input type="password" id="password" name="password"/>
+    <input type="submit" value="Log in"/>
+</form>
+</div>
+
+</body>
+</html>
