@@ -11,10 +11,23 @@
     <title>Bland selv cupcakes</title>
 </head>
 <body>
+<c:forEach items="${applicationScope.Bottoms}" var="item"  >
+
+    ${item.value.Smag}  : ${item.value.Pris}
+    <br>
+
+</c:forEach>
+<c:forEach items="${applicationScope.Toppings}" var="item"  >
+
+    ${item.value.Smag}  : ${item.value.Pris}
+    <br>
+
+</c:forEach>
+
 
 <form action="Servlet_Products">
     <label for="Bottoms">vælg bund:</label>
-    <select id="Bottoms" name="Bund">
+    <select id="Bottoms" name="Bund"></select>
         <option value="Bottoms">Bund</option>
         <label for="Toppings">vælg topping:</label>
         <select id="Toppings" name="top">

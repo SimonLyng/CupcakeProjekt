@@ -17,28 +17,28 @@ public class UserMapper implements IUserMapper
     }
 
     @Override
-    public User login(String Email, String password) throws DatabaseException
+    public User login(String email, String password) throws DatabaseException
     {
         Logger.getLogger("web").log(Level.INFO, "");
 
         User user = null;
 
-        String sql = "SELECT * FROM user WHERE Email = ? AND password = ?";
+        String sql = "SELECT * FROM user WHERE email = ? AND password = ?";
 
         try (Connection connection = connectionPool.getConnection())
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
-                ps.setString(1, Email);
+                ps.setString(1, email);
                 ps.setString(2, password);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next())
                 {
                     String role = rs.getString("role");
-                    user = new User(Email, password, role);
+                    user = new User(email, password, role);
                 } else
                 {
-                    throw new DatabaseException("Wrong Email or password");
+                    throw new DatabaseException("Wrong email or password");
                 }
             }
         } catch (SQLException ex)
@@ -49,33 +49,33 @@ public class UserMapper implements IUserMapper
     }
 
     @Override
-    public User createUser(String FirstName, String LastName,String Email, String password, String role) throws DatabaseException
+    public User createUser(String FirstName, String LastName,String email, String password, String role) throws DatabaseException
     {
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
-        String sql = "insert into user (FirstName, LastName, Email, password, role) values (?,?,?,?,?)";
+        String sql = "insert into user (FirstName, LastName, email, password, Role) values (?,?,?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
                 ps.setString(1, FirstName);
                 ps.setString(2, LastName);
-                ps.setString(3, Email);
+                ps.setString(3, email);
                 ps.setString(4, password);
                 ps.setString(5, role);
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
                 {
-                    user = new User(Email, password, role);
+                    user = new User(email, password, role);
                 } else
                 {
-                    throw new DatabaseException("The user with username = " + Email + " could not be inserted into the database");
+                    throw new DatabaseException("The user with username = " + email + " could not be inserted into the database");
                 }
             }
         }
         catch (SQLException ex)
         {
-            throw new DatabaseException(ex, "Could not insert username into database");
+            throw new DatabaseException(ex, "Could not insert user into database");
         }
         return user;
     }

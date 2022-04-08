@@ -4,6 +4,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "Servlet_ShoppingCart", value = "/Servlet_ShoppingCart")
 public class Servlet_ShoppingCart extends HttpServlet {

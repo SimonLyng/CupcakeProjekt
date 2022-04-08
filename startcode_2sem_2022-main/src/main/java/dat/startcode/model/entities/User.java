@@ -6,25 +6,25 @@ public class User
 {
 
 
-    private String Email;
+    private String email;
     private String password;
-    private String Role;
+    private String role;
     private int balance;
 
 
 
     public User(String email, String password, String role) {
-        this.Email = email;
+        this.email = email;
         this.password = password;
-        this.Role = role;
+        this.role = role;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getPassword() {
@@ -34,26 +34,30 @@ public class User
     public void setPassword(String password) {
         this.password = password;
     }
+
     public String getRole() {
-        return Role;
+        return role;
     }
 
     public void setRole(String role) {
-        Role = role;
+        this.role = role;
     }
 
+    public int getBalance() {
+        return balance;
+    }
 
-
-
-
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
 
     @Override
     public String toString()
     {
         return "User{" +
-                "brugerNavn='" + Email + '\'' +
+                "brugerNavn='" + email + '\'' +
                 ", kodeord='" + password + '\'' +
-                ", rolle='" + Role + '\'' +
+                ", rolle='" + role + '\'' +
                 '}';
     }
 
@@ -69,6 +73,16 @@ public class User
                 getRole().equals(user.getRole());
     }
 
+    public int withdraw(int i)
+    {
+
+
+        if (i > 0) {
+            balance = balance - i;
+        }
+
+        return balance;
+    }
     @Override
     public int hashCode()
     {

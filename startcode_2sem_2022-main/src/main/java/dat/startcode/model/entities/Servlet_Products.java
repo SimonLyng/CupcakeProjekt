@@ -5,12 +5,13 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet(name = "Servlet_Products", value = "/Servlet_Products")
 public class Servlet_Products extends HttpServlet {
 
-    HashMap<String,Products> Bottoms = new HashMap<String, Products>();
-    HashMap<String, Products> Toppings = new HashMap<String, Products>();
+    Map<String,Products> Bottoms = new HashMap<>();
+    Map<String, Products> Toppings = new HashMap<>();
     public void init() {
         //bottoms
         Products products0 = new Products("Chokolade", 5);

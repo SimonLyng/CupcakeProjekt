@@ -64,31 +64,48 @@
         }
 
         .div1 {
-            width: 300px;
-            height: 100px;
-            right: 1px;
-            bottom: 400px;
+            position: absolute;
+            width: 250px;
+            height: 50px;
+            top: 350px;
+            right: 900px;
             border: 2px solid darkblue;
 
         }
         .div2 {
-            width: 300px;
-            height: 100px;
-            right: 0;
-            bottom: 100px;
+            position: absolute;
+            width: 250px;
+            height: 50px;
+            top: 350px;
+            right: 300px;
             border: 2px solid darkblue;
         }
         .div3 {
-            width: 300px;
-            height: 100px;
-            right: 100px;
-            bottom: 300px;
+            position: absolute;
+            width: 250px;
+            height: 50px;
+            top: 650px;
+            right: 900px;
             border: 2px solid darkblue;
         }
         .div4 {
-            width: 300px;
-            height: 100px;
+            position: absolute;
+            width: 250px;
+            height: 50px;
+            top: 650px;
+            right: 300px;
             border: 2px solid darkblue;
+        }
+        #btnmix {
+            top: 720px;
+            right: 300px;
+            width: 90px;
+            height: 45px;
+            background: transparent;
+            border: ghostwhite;
+            color: black;
+            font-size:12px;
+            font-weight:700;
         }
     </style>
 </head>
@@ -99,22 +116,27 @@
     <a href="index.jsp" class="logo">Olsker Cupcakes</a>
     <div class="header-right">
         <a class="active" href="index.jsp">Hjem</a>
+        ${sessionScope.email}
         <a href="login.jsp">Log ind</a>
+        ${sessionScope.Logout}
         <a href="Logout">Log ud</a>
+        ${sessionScope.UserSide}
         <a href="UserSide.jsp">Min Konto</a>
         <a href="CreateAccount.jsp">Ny konto</a>
+        <a href="ShoppingCart.jsp">KURV</a>
     </div>
 </div>
 <div style="padding-left:20px">
     <h1>Velkommen til Olsker Cupcakes</h1>
     <p>Bornholms bedste cupcakes</p>
     <p>Køb dem i dag!</p>
-<br>
-<div class="div1">Dette her den lille størrelse <br>Der er 5 cupcakes i denne pakke.</div>
-<div class="div2">Dette er den mellem størrelse <br>Der er 10 cupcakes i denne pakke.</div>
-<div class="div3">Dette er den store størrelse <br>Der er 20 cupcakes i denne pakke.</div>
-<div class="div4">Dette er en mix selv<br>Der er 12 cupcakes i denne pakke</div>
-    <input type="submit"  value="Bland selv" href="SelfMix.jsp"/>
+    <p></p>
+    <br>
+    <div class="div1">Dette her den lille størrelse <br>Der er 5 cupcakes i denne pakke.</div>
+    <div class="div2">Dette er den mellem størrelse <br>Der er 10 cupcakes i denne pakke.</div>
+    <div class="div3">Dette er den store størrelse <br>Der er 20 cupcakes i denne pakke.</div>
+    <div class="div4">Dette er en mix selv<br>Der er 12 cupcakes i denne pakke</div>
+    <button id="btnmix">Bland selv</button>
 </div>
 
 </body>

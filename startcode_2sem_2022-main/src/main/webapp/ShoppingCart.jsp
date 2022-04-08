@@ -11,7 +11,12 @@
     <title>Title</title>
 </head>
 <body>
-
+<h3>${requestScope.fejl}</h3>
+<form action="Servlet_Payment">
+    <label for="Payment">Bekfræft Ordre:</label><br>
+    <input type="text" id="Payment" name="beløb" value=0><br>
+    <input type="submit" value="Bekræft Ordre">
 <button type="Confirm Order" value="Confirm Order">Bekræft Køb<a href="OrderConfirmation.jsp"></a></button>
+</form>
 </body>
 </html>

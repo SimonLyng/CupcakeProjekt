@@ -1,5 +1,6 @@
 package dat.startcode.control;
 
+import dat.startcode.model.config.ApplicationStart;
 import dat.startcode.model.persistence.ConnectionPool;
 
 import javax.servlet.ServletException;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "logout", urlPatterns = {"/logout"} )
+@WebServlet(name = "Logout", urlPatterns = {"/Logout"} )
 public class Logout extends HttpServlet
 {
     private ConnectionPool connectionPool;
@@ -18,6 +19,7 @@ public class Logout extends HttpServlet
     @Override
     public void init() throws ServletException
     {
+        this.connectionPool = ApplicationStart.getConnectionPool();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException
