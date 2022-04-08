@@ -8,9 +8,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Bland selv cupcakes</title>
 </head>
 <body>
 
+<form action="Servlet_Products">
+    <label for="Bottoms">vælg bund:</label>
+    <select id="Bottoms" name="Bund">
+        <option value="Bottoms">Bund</option>
+        <label for="Toppings">vælg topping:</label>
+        <select id="Toppings" name="top">
+            <option value="Toppings">Topping</option>
+    </select>
+    <input type="submit">
+</form>
+
+<p>Jump back to the <a href="index.jsp">Frontpage</a>
 </body>
 </html>

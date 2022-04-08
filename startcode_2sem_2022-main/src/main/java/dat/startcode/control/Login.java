@@ -31,7 +31,7 @@ public class Login extends HttpServlet
     {
         // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
         doPost(request, response);
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("Frontpage.jsp");
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
